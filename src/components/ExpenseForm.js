@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import moment from "moment";
-// import "react-dates/initialize";
-// import { SingleDatePicker } from "react-dates";
-// import "react-dates/lib/css/_datepicker.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -15,7 +12,7 @@ const ExpenseForm = (props) => {
     note: props.expense ? props.expense.note : "",
     amount: props.expense ? props.expense.amount.toString() : "",
     createdAt: props.expense ? props.expense.createdAt : new Date(),
-    // calendarFocused: false,
+
     error: "",
   });
   const handleInput = (e) => {
@@ -29,9 +26,6 @@ const ExpenseForm = (props) => {
       setState({ ...state, [name]: value });
     }
   };
-  // const handleDateChange = (date) => setState({ ...state, createdAt: date });
-  // const handleFocusChange = ({ focused }) =>
-  //   setState({ ...state, calendarFocused: focused });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,14 +63,7 @@ const ExpenseForm = (props) => {
           value={state.amount}
           onChange={handleInput}
         />
-        {/* <SingleDatePicker
-          date={state.createdAt} // momentPropTypes.momentObj or null
-          onDateChange={handleDateChange} // PropTypes.func.isRequired
-          focused={state.calendarFocused} // PropTypes.bool
-          onFocusChange={handleFocusChange} // PropTypes.func.isRequired
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        /> */}
+
         <DatePicker
           selected={state.createdAt}
           onChange={(date) => setState({ ...state, createdAt: date })}
