@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ExpenseForm from "./ExpenseForm";
-import { addExpense } from "../actions/expenses";
+import { startAddExpense } from "../actions/expenses";
 
 const AddExpensePage = (props) => {
   const history = useHistory();
@@ -12,7 +12,7 @@ const AddExpensePage = (props) => {
       <h1>Add Expense</h1>
       <ExpenseForm
         onSubmit={(expense) => {
-          props.dispatch(addExpense(expense));
+          props.dispatch(startAddExpense(expense));
           history.push("/");
         }}
       />
