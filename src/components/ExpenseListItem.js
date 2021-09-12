@@ -1,23 +1,19 @@
 import React from "react";
-import { connect } from "react-redux";
+import moment from "moment";
 import { Link } from "react-router-dom";
+import formatAmount from "indian-currency-formatter";
 
-const ExpenseListItem = ({  description, amount, createdAt, id }) => {
+const ExpenseListItem = ({ description, amount, createdAt, id }) => {
   return (
     <div>
       <h3>{description}</h3>
       <p>
-        {amount} - {createdAt}
+      ₹{formatAmount(amount)} -{" "}
+        {moment(createdAt).format("MMMM Do, YYYY")}
       </p>
       <Link to={`/edit/${id}`}>Edit</Link>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    expenses: state.expenses,
-  };
-};
-
-export default connect(mapStateToProps)(ExpenseListItem);
+export default ExpenseListItem;
