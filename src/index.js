@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App, { store } from "./App";
+import LoadingPage from "./components/LoadingPage";
 import { firebase } from "./firebase/firebase";
 import { history } from "./routers/AppRouter";
 import { startSetExpenses } from "./actions/expenses";
 import { login, logout } from "./actions/auth";
 import "./firebase/firebase";
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById("root"));
+ReactDOM.render(<LoadingPage />, document.getElementById("root"));
 
 let hasRendered = false;
 const renderApp = () => {
@@ -19,7 +20,7 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log("This ID is from Index.js", user.uid)
+    console.log("This ID is from Index.js", user.uid);
     store.dispatch(login(user.uid));
     store.dispatch(startSetExpenses()).then(() => {
       renderApp();
